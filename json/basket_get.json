@@ -1,0 +1,20 @@
+{
+  "basket": [
+    {
+      "id": 3,
+      "name": "Mango People T-shirt",
+      "img": "prod-3.jpg",
+      "price": 52.00,
+      "count": 1
+    },
+    {
+      "id": 6,
+      "name": "Mango People T-shirt",
+      "img": "prod-6.jpg",
+      "price": 52.00,
+      "count": 2
+    }
+  ],
+  "goods": 3,
+  "amount": 156.00
+}
