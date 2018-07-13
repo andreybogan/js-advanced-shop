@@ -1,6 +1,8 @@
 /** Класс описывающий корзину с товарами в шапке сайта. */
 class BasketTop {
-  /** Констурктор */
+  /**
+   * Конструктор иницифлизирует свойства класса, методы и обработчики событий.
+   */
   constructor() {
     // Элемент контейнера для товаров в корзине.
     this.$goods = $('#containerBasketTop');
@@ -33,7 +35,7 @@ class BasketTop {
     $('body').on('click', this.selectorAdd, event => this.addGood(event));
   }
 
-  // Получаем данные о товарах в корзине и отрисовываем их на странице.
+  /** Метод получает данные о товарах в корзине и отрисовывает их на странице. */
   getDataAndRenderBasket() {
     if (sessionStorage.getItem(this.keyBasket)) {
       // Если локальное хранилище существует, то получаем из него данные.
@@ -58,7 +60,7 @@ class BasketTop {
     }
   }
 
-  /** Метод получает данные из json файла, и вызывает метод, который обрабатывает их. */
+  /** Метод получает данные из json файла, и вызывает метод, обрабатывающий их. */
   getAjaxProduct() {
     // Делаем ajax запрос, чтобы получить список товаров из json файла.
     $.ajax({
@@ -75,9 +77,13 @@ class BasketTop {
     });
   }
 
-  // Метод изменяет значения переменных: totalGoods, totalAmount, basketItems на
-  // данные полученные из json файла. И вызывает метод отрисовывающий товары в корзине.
+  /**
+   * Метод изменяет значения переменных: totalGoods, totalAmount, basketItems на
+   * данные полученные из json файла. И вызывает метод отрисовывающий товары в корзине.
+   * @param {Object} data - Данные полученные из json файла.
+   */
   setDataFromJson(data) {
+    console.log(data);
     // Изменяем общую сумму и общее количество товаров в корзине.
     this.totalGoods = data['goods'];
     this.totalAmount = data['amount'];
@@ -87,17 +93,6 @@ class BasketTop {
     for (let i = 0; i < data['basket'].length; i++) {
       this.basketItems.push(data['basket'][i]);
     }
-
-    // // Создаем объект с данными о товаре в корзине.
-    // let myJson = {
-    //   "basket": this.basketItems,
-    //   "goods": this.totalGoods,
-    //   "amount": this.totalAmount
-    // };
-    // // Преобразуйте объект в JSON перед сохранением.
-    // myJson = JSON.stringify(myJson);
-    // // И сохраняем их в session storage.
-    // sessionStorage.setItem('basket', myJson);
 
     // Перезаписываем данные в локальном хранилище sessionStorage.
     this.setSessionStorage();
@@ -120,7 +115,7 @@ class BasketTop {
     sessionStorage.setItem('basket', myJson);
   }
 
-  // Метод отрисовывает товоры в корзине.
+  /** Метод отрисовывает товоры в корзине. */
   render() {
     // Изменяем общее количество товаров на иконке корзины.
     this.$elemGoods.text(this.totalGoods);
@@ -132,7 +127,6 @@ class BasketTop {
 
     // Получаем количество элементов в массиве.
     let lenghtBasketItem = this.basketItems.length;
-
 
     // Если в корзине отсутствуют товары то выводим сообщение.
     if (lenghtBasketItem === 0) {
