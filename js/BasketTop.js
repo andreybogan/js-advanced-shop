@@ -83,6 +83,7 @@ class BasketTop {
    * @param {Object} data - Данные полученные из json файла.
    */
   setDataFromJson(data) {
+    console.log(data);
     // Изменяем общую сумму и общее количество товаров в корзине.
     this.totalGoods = data['goods'];
     this.totalAmount = data['amount'];
