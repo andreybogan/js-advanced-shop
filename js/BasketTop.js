@@ -83,7 +83,6 @@ class BasketTop {
    * @param {Object} data - Данные полученные из json файла.
    */
   setDataFromJson(data) {
-    console.log(data);
     // Изменяем общую сумму и общее количество товаров в корзине.
     this.totalGoods = data['goods'];
     this.totalAmount = data['amount'];
@@ -177,8 +176,7 @@ class BasketTop {
 
         // Создаем элемент ценой.
         let $elemPrice = $('<p class="price">' + this.basketItems[i]['count']
-          + '<span> x </span>' + this.basketItems[i]['price']
-          * this.basketItems[i]['count'] + '</p>');
+          + '<span> x </span>' + this.basketItems[i]['price'] + '</p>');
 
         // Создаем контейнер для названия, рейтинга и цены, и добавляем их в него.
         let $elemDivNRP = $('<div/>');
